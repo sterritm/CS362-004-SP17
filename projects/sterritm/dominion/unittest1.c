@@ -1,3 +1,8 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's updateCoins()
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -59,6 +64,7 @@ int main() {
 	return 0;
 }
 
+/*This function fills a player's hand with the designated number of gold, silver, and copper. Function returns number of copper cards in hand.*/
 int populateHand(struct gameState *state, int p, int sT, int gT) {
 	int i;
 	int cT = 0;

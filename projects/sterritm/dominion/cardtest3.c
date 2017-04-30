@@ -1,3 +1,8 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's village effect
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -33,6 +38,7 @@ int main() {
 	return 0;
 }
 
+/*function tests if village draws the appropriate number of cards for the player, increases the number of actions, and prints test successful or failed to console depending on results.*/
 int testVillage(int p, struct gameState *post) {
 	int choice1 = 0;
 	int choice2 = 0;

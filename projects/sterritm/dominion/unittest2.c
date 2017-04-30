@@ -1,3 +1,9 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's getCost()
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -49,7 +55,7 @@ int main() {
 	return 0;
 }
 
-//checkDrawCard function obtained from OSU's CS 372 lesson 11, slide 11 lecture video
+/*checkGetCost determines whether the card cost is correct or wrong.*/
 int checkGetCost(char *name, enum CARD card, int expected) {
 	int error = 0;
 	if (getCost(card) != -1) {

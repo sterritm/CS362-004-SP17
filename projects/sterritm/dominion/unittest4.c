@@ -1,3 +1,8 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's gainCard()
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -41,6 +46,7 @@ int main() {
 	return 0;
 }
 
+/*Function checks if gainCard produces the appropriate post conditions and prints successful and failed tests to console.*/
 int checkGainCard(int supplyPos, struct gameState *post, int toFlag, int p) {
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));

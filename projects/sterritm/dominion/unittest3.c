@@ -1,3 +1,8 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's buyCards()
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -59,6 +64,7 @@ int main() {
 	return 0;
 }
 
+/*This function checks if the buyCard function is implemented correctly and prints text for successful and failed tests.*/
 int checkBuyCard(struct gameState *post, int p) {
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));

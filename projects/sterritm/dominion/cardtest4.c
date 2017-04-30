@@ -1,3 +1,8 @@
+/*
+Name: Michael Sterritt
+Date: 4/29/17
+Description: This file is a unit test for dominion.c's adventurer effect
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -105,6 +110,7 @@ int main() {
 	return 0;
 }
 
+/*function tests if adventurer effect produces the expected end state after it is played. There are numerous parameters used for determining end state, and prints success or failure depending on results of test.*/
 int testAdventurer(int p, struct gameState *pre, struct gameState *post, int r, int newTreasure, int nonTreasure, int discarded, int expectedValue, int shuffled) {
 	int error = 0;
 	error += asserttrue(r, 0);
@@ -132,6 +138,7 @@ int testAdventurer(int p, struct gameState *pre, struct gameState *post, int r, 
 	return 0;
 }
 
+/*countTreasures counts the number of treasure cards in the selected player's hand.*/
 int countTreasures(int p, struct gameState *state) {
 	int i;
 	int treasure = 0;
