@@ -526,7 +526,6 @@ int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -576,7 +575,6 @@ int drawCard(int player, struct gameState *state)
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
   }
-
   return 0;
 }
 
@@ -650,7 +648,8 @@ int adventurerEffect(int drawntreasure, struct gameState *state, int currentPlay
 		if (state->deckCount[currentPlayer] <1) {//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
 		}
-		drawCard(currentPlayer, state);
+		if (drawCard(currentPlayer, state) == -1)		//added condional to break loop if a card is not drawn
+			break;
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 			drawntreasure++;
@@ -697,7 +696,6 @@ int smithyEffect(int currentPlayer, struct gameState *state, int handPos) {
 	{
 		drawCard(currentPlayer, state);
 	}
-
 	//discard card from hand
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
@@ -1362,18 +1360,15 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
 {
-	
   //if card is not trashed, added to Played pile 
   if (trashFlag < 1)
     {
       //add card to played pile
       state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++;
+	  state->playedCardCount++;
     }
-	
   //set played card to -1
   state->hand[currentPlayer][handPos] = -1;
-	
   //remove card from player's hand
   if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
     {
