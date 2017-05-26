@@ -1,0 +1,113 @@
+Card: Adventurer
+
+Bug 1:
+Title: Seg Fault error in playAdventurer when less than 2 Treasure cards in deck and discard
+
+Description:
+When running playAdventurer with a game state that contains fewer than 2 treasure cards in the current player's deck and discard piles,
+there is a chance for a seg fault error to occur from trying to reach a value outside of the tempHand array. This is caused by the z value
+erring from the while loop at line 1292, since no treasure can ever be drawn and loop does not terminate.
+
+Pre-conditions:
+	-Number of combined treasures in current player's deck and discard pile are less than 2.
+	-All values in hand array beyond handCount are not treasure cards.
+
+Cause:
+	-Seg Fault on line 1311 in dominion.c
+		tempHand[z] = cardDrawn
+	-Results from value of z exceeding the bounds of tempHand array (500).
+	
+Result:
+	Program crashes (seg fault)
+	
+Priority:
+	Medium - unlikely for bug to occur in standard game.
+	
+Severity:
+	High - game crashes
+----------------------------------------------------------------------------------------------------------------------------------------------	
+Bug 2:
+Title: Adventurer does not discard one card
+
+Description:
+After playing the adventurer card and non-treasure cards were drawn in the process, the card always fails to discard one of those
+cards.
+
+Pre-conditions:
+	-Top two cards drawn are both not treasure cards.
+
+Cause:
+	-Not all cards in tempHand are discarded
+
+Result:
+	-One of the non-treasure cards drawn is removed from the game state.
+	
+Priority:
+	High
+	
+Severity:
+	Medium
+----------------------------------------------------------------------------------------------------------------------------------------------
+Bug 3:
+Title: Adventurer does not get played
+
+Description:
+When playing the adventurer, the playedCardCount does not increase after the card's effect is invoked. Additionally, the player's hand count
+is always 1 higher than expected. These can both be explained by how the adventurer card is never played/discarded from the player's hand.
+
+Pre-conditions:
+	-None, always occurs when adventurer invoked.
+	
+Cause:
+	-discardCard never called in playAdventurer
+
+Result:
+	-Adventurer remains in player's hand
+	
+Priority:
+	High
+	
+Severity:
+	Low
+	
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+Card: Smithy
+Bug 4:
+Title: Smithy draws 4 cards
+
+Description:
+When playing the smithy and there are at least 4 cards available to draw, current player ends up having drawn 4 cards instead of 3.
+
+Pre-conditions:
+	-At least 4 cards in current player's deck and discard pile
+	
+Result:
+	-Current player draws 1 card too many
+	
+Priority:
+	Low
+	
+Severity:
+	Low
+	
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+Card: Village
+Bug 5:
+Title: Village always sets numActions to 2
+
+Description:
+After playing the village, current player's numActions afterwards is always 2, regardless of the initial number of actions.
+
+Pre-conditions:
+	-Player has more than 0 actions.
+	
+Result:
+	-Player always has 2 actions after playing village.
+	
+Priority:
+	Medium
+
+Severity:
+	Low
